@@ -18,12 +18,12 @@ $checkEmail =  mysqli_num_rows($exeSQL);
 if ($checkEmail != 0) {
     $arrayu = mysqli_fetch_array($exeSQL);
     if ($arrayu['userPassword'] != $UserPW) {
-         $Message = "pw WRONG";
+         $Message = "pw WRONG user";
     } else {
-        $Message = "Success";
+        $Message = "SuccessUser";
     }
 } else {
-	$SQL = "SELECT * FROM org WHERE userEmail = '$UserEmail'";
+	$SQL = "SELECT * FROM org WHERE orgEmail = '$UserEmail'";
     $exeSQL = mysqli_query($conn, $SQL);
     $checkEmail =  mysqli_num_rows($exeSQL);
    
