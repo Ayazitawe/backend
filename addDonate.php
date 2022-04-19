@@ -1,5 +1,6 @@
 <?php
 include('db.php');
+
 // Creating connection.
  $conn= mysqli_connect($HostName,$HostUser,$HostPass,$DatabaseName);
  
@@ -8,23 +9,18 @@ include('db.php');
  
  // decoding the received JSON and store into $obj variable.
  $decodedData= json_decode($json,true);
-$UserEmail = $decodedData['Email'];
+ $ORGEmail = $decodedData['Email'];
  $Name = $decodedData['Name']; 
-$City = $decodedData['City'];
- $Phone = $decodedData['Phone'];
- $Image = $decodedData['Image'];
-  $BD = $decodedData['BD'];
-   $WorkPlace = $decodedData['WorkPlace'];
-   $gender=$decodedData['gender'];
- //$ChildNum = $decodedData['ChildNum'];
- $password = $decodedData['password'];
+ $Name1 = $decodedData['Name1'];  //descr
+ $Name2 = $decodedData['Name2']; //money
+ $date1 = $decodedData['date1'];
+ $picD = $decodedData['picD']; 
  // Creating SQL query and insert the record into MySQL database table.
-$Sql_Query = "UPDATE user SET userName = '$Name', userphone= '$Phone',
-              userPassword='$password',image='$Image',city='$City',BD='$BD', WorkPlace='$WorkPlace', gender='$gender'
-              WHERE  userEmail='$UserEmail'";
+$Sql_Query = "insert into donate (picD,Name,descr,date,email,money,donation,flagNotification,date) values ('$picD','$Name','$Name1','$date1','$ORGEmail','$Name2',0,'true',now())";
+ 
 // Converting the message into JSON format.
 if(mysqli_query($conn,$Sql_Query)){
-$MSG = 'تم التعديل' ; 
+$MSG = 'تم إضافة تبرع جديد' ; 
 
 
 $json = json_encode($MSG,JSON_UNESCAPED_UNICODE);

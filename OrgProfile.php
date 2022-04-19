@@ -13,8 +13,12 @@ include('db.php');
     $arrayu = mysqli_fetch_array($exeSQL);
     $response[] = array("Message0" => $arrayu['orgName'],
        "Message1" => $arrayu['orgPhone'],
-     "Message2" => $arrayu['orgCity']);
-	
+     "Message2" => $arrayu['orgCity'],
+	"Message3" => $arrayu['image'],
+	"Message4" => $arrayu['orgPassword'],
+	"Message5" => $arrayu['ChildNum'],
+	"Message6" => $arrayu['OrgFollower'],
+	);
 echo json_encode($response);
   mysqli_close($conn);
 ?>

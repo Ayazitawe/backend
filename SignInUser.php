@@ -42,7 +42,7 @@ $emailExistJson = json_encode($emailExistMSG,JSON_UNESCAPED_UNICODE);
  else{
  
  // Creating SQL query and insert the record into MySQL database table.
-$Sql_Query = "insert into user (userName,userEmail,userPassword) values ('$name','$email','$password')";
+$Sql_Query = "insert into user (userName,userEmail,userPassword,image) values ('$name','$email','$password','https://i.stack.imgur.com/l60Hf.png')";
  
  
  if(mysqli_query($con,$Sql_Query)){

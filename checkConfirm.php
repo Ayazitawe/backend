@@ -5,27 +5,16 @@ include('db.php');
 
 $json = file_get_contents('php://input');
 $decodedData= json_decode($json,true);
-$ORGEmail = $decodedData['Email'];
+$Email = $decodedData['Email'];
+$org = $decodedData['org'];
 // Creating SQL command to fetch all records from Table.
-$sql = "SELECT * FROM orgchildren where OrgChildEmail = '$ORGEmail'";
 
+$sql = " SELECT flagConfirm FROM followers WHERE UserEmail = '$Email' and OrgEmail='$org'";
 $result = $conn->query($sql);
 
-if ($result->num_rows >0) {
+$row = $result->fetch_assoc();
+$json = json_encode($row);
  
- 
- while($row[] = $result->fetch_assoc()) {
- 
- $response = $row;
- 
- $json = json_encode($response);
- 
- }
- 
-} else {
-	$response="No Results Found";
- $json = json_encode($response);
-}
  echo $json;
 $conn->close();
 ?>

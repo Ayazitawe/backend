@@ -16,7 +16,7 @@ include('db.php');
  $Childgender = $decodedData['gender'];
  $ChildMoney = $decodedData['Money'];
  // Creating SQL query and insert the record into MySQL database table.
-$Sql_Query = "insert into orgchildren (ChildName,OrgChildEmail,ChildGender,ChildBD,ChildStory,ChildMoney,ChildImage) values ('$ChildName','$ORGEmail','$Childgender','$ChildBD','$ChildStory','$ChildMoney','$ChildImage')";
+$Sql_Query = "insert into orgchildren (ChildName,OrgChildEmail,ChildGender,ChildBD,ChildStory,ChildMoney,ChildImage,userEkfal) values ('$ChildName','$ORGEmail','$Childgender','$ChildBD','$ChildStory','$ChildMoney','$ChildImage','empty')";
  
 // Converting the message into JSON format.
 if(mysqli_query($conn,$Sql_Query)){

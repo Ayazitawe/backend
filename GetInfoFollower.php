@@ -15,9 +15,8 @@ if ($result->num_rows >0) {
  $sql1 = "SELECT * FROM user WHERE userEmail = '$emailuser'";
  $exeSQL = mysqli_query($conn, $sql1);
  $arrayu = mysqli_fetch_array($exeSQL);
- $response[] = array("id" => $row['id'],"date" => $row['date'],"image" => $arrayu['image'],
- "userName" => $arrayu['userName'],"text" => "طلب الإشتراك في جمعيتك",
- "userEmail" =>$emailuser,"flagConfirm" => $row['flagConfirm']);
+ $response[] = array("id" => $row['id'],"image" => $arrayu['image'],
+ "userName" => $arrayu['userName'],"userEmail" =>$emailuser);
  $json = json_encode($response);//."".$response2
  
  }

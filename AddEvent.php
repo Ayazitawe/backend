@@ -1,5 +1,6 @@
 <?php
 include('db.php');
+
 // Creating connection.
  $conn= mysqli_connect($HostName,$HostUser,$HostPass,$DatabaseName);
  
@@ -8,23 +9,22 @@ include('db.php');
  
  // decoding the received JSON and store into $obj variable.
  $decodedData= json_decode($json,true);
-$UserEmail = $decodedData['Email'];
+ $ORGEmail = $decodedData['Email'];
  $Name = $decodedData['Name']; 
-$City = $decodedData['City'];
- $Phone = $decodedData['Phone'];
- $Image = $decodedData['Image'];
-  $BD = $decodedData['BD'];
-   $WorkPlace = $decodedData['WorkPlace'];
-   $gender=$decodedData['gender'];
- //$ChildNum = $decodedData['ChildNum'];
- $password = $decodedData['password'];
+ $des = $decodedData['des'];
+ $date1 = $decodedData['date1'];
+ $date = $decodedData['date'];
+ $st = $decodedData['st'];
+ $et = $decodedData['et'];
+  $loca = $decodedData['loc1'].$decodedData['loc2'];;
+
+ 
  // Creating SQL query and insert the record into MySQL database table.
-$Sql_Query = "UPDATE user SET userName = '$Name', userphone= '$Phone',
-              userPassword='$password',image='$Image',city='$City',BD='$BD', WorkPlace='$WorkPlace', gender='$gender'
-              WHERE  userEmail='$UserEmail'";
+$Sql_Query = "insert into events (nameEvent,stEvent,etEvent,sdEvent,desEvent,locEvent,Email,edEvent) values ('$Name','$st','$et','$date','$des','$loca','$ORGEmail','$date1')";
+ 
 // Converting the message into JSON format.
 if(mysqli_query($conn,$Sql_Query)){
-$MSG = 'تم التعديل' ; 
+$MSG = 'تم إضافة مناسبة جديدة' ; 
 
 
 $json = json_encode($MSG,JSON_UNESCAPED_UNICODE);

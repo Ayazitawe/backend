@@ -23,12 +23,13 @@ $password = $obj['password'];
 
 $phone=$obj['phone'];
 $city=$obj['city'];
-
+$pic='https://thumbs.dreamstime.com/b/illustration-building-icon-white-background-building-icon-white-background-107844010.jpg';
 //Checking email is already exist or not using SQL query.
 $CheckSQL = "SELECT * FROM org WHERE orgEmail='$email'";
 
 // Executing SQL Query.
 $check = mysqli_fetch_array(mysqli_query($con,$CheckSQL));
+
 
 
 if(isset($check)){
@@ -45,7 +46,7 @@ $emailExistJson = json_encode($emailExistMSG,JSON_UNESCAPED_UNICODE);
  else{
  
  // Creating SQL query and insert the record into MySQL database table.
-$Sql_Query = "insert into org (orgName,orgEmail,orgPassword,orgCity,orgPhone) values ('$name','$email','$password','$city','$phone')";
+$Sql_Query = "insert into org (orgName,orgEmail,orgPassword,orgCity,orgPhone,image) values ('$name','$email','$password','$city','$phone','$pic')";
  
  
  if(mysqli_query($con,$Sql_Query)){

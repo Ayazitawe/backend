@@ -7,17 +7,17 @@ $json = file_get_contents('php://input');
 $decodedData= json_decode($json,true);
 $Emailorg = $decodedData['Email'];
 // Creating SQL command to fetch all records from Table.
-$sql = "SELECT * FROM followers where OrgEmail = '$Emailorg'";
+$sql = "SELECT * FROM followers where UserEmail = '$Emailorg'";
 $result = $conn->query($sql);
+$num=$result->num_rows;
 if ($result->num_rows >0) {
  while($row = $result->fetch_assoc()) {
- $emailuser = $row ['UserEmail'];
- $sql1 = "SELECT * FROM user WHERE userEmail = '$emailuser'";
+ $emailorg = $row ['OrgEmail'];
+ $sql1 = "SELECT * FROM org WHERE orgEmail = '$emailorg'";
  $exeSQL = mysqli_query($conn, $sql1);
  $arrayu = mysqli_fetch_array($exeSQL);
- $response[] = array("id" => $row['id'],"date" => $row['date'],"image" => $arrayu['image'],
- "userName" => $arrayu['userName'],"text" => "طلب الإشتراك في جمعيتك",
- "userEmail" =>$emailuser,"flagConfirm" => $row['flagConfirm']);
+ $response[] = array("id" => $row['id'],"image" => $arrayu['image'],"number" =>$num,
+ "orgName" => $arrayu['orgName'],"orgEmail" =>$emailorg,"orgPhone" =>$arrayu['orgPhone'],"orgCity" =>$arrayu['orgCity'] );
  $json = json_encode($response);//."".$response2
  
  }

@@ -5,26 +5,20 @@ include('db.php');
 
 $json = file_get_contents('php://input');
 $decodedData= json_decode($json,true);
-$ORGEmail = $decodedData['Email'];
+$Email = $decodedData['Email'];
+$org = $decodedData['org'];
+$id = $decodedData['id'];
 // Creating SQL command to fetch all records from Table.
-$sql = "SELECT * FROM orgchildren where OrgChildEmail = '$ORGEmail'";
-
+$sql = "insert into goingevent (userEmail,orgEmail,id,flagNotification,date) values ('$Email','$org','$id','true',now())";
 $result = $conn->query($sql);
 
-if ($result->num_rows >0) {
- 
- 
- while($row[] = $result->fetch_assoc()) {
- 
- $response = $row;
- 
- $json = json_encode($response);
- 
- }
+if ($result) {
+$MSG = 'add going event' ;
+$json = json_encode($MSG,JSON_UNESCAPED_UNICODE);
  
 } else {
-	$response="No Results Found";
- $json = json_encode($response);
+	$json="No Results Found";
+
 }
  echo $json;
 $conn->close();
