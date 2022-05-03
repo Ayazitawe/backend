@@ -16,7 +16,7 @@ include('db.php');
  $date1 = $decodedData['date1'];
  $picD = $decodedData['picD']; 
  // Creating SQL query and insert the record into MySQL database table.
-$Sql_Query = "insert into donate (picD,Name,descr,date,email,money,donation,flagNotification,date) values ('$picD','$Name','$Name1','$date1','$ORGEmail','$Name2',0,'true',now())";
+$Sql_Query = "insert into donate (picD,Name,descr,date,email,money,donation,flagNotification) values ('$picD','$Name','$Name1','$date1','$ORGEmail','$Name2',0,'true')";
  
 // Converting the message into JSON format.
 if(mysqli_query($conn,$Sql_Query)){

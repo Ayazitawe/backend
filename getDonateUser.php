@@ -5,23 +5,19 @@ include('db.php');
 
 $json = file_get_contents('php://input');
 $decodedData= json_decode($json,true);
-$Emailorg = $decodedData['Email'];
+$email = $decodedData['Email'];
 // Creating SQL command to fetch all records from Table.
-$sql = "SELECT * FROM followers where UserEmail = '$Emailorg'";
+$sql = "SELECT * FROM donation where UserEmail = '$email'";
 $result = $conn->query($sql);
-$num=$result->num_rows;
 if ($result->num_rows >0) {
  while($row = $result->fetch_assoc()) {
- $emailorg = $row ['OrgEmail'];
- $sql2 = "SELECT * FROM chat where userEmail='$Emailorg' and orgEmail='$emailorg'";
-$result2 = $conn->query($sql2);
-if ($result2->num_rows >0)  $flag=1;
-else $flag=0;
- $sql1 = "SELECT * FROM org WHERE orgEmail = '$emailorg'";
+ $id = $row ['id'];
+ $sql1 = "SELECT * FROM donate WHERE id = '$id'";
  $exeSQL = mysqli_query($conn, $sql1);
  $arrayu = mysqli_fetch_array($exeSQL);
- $response[] = array("id" => $row['id'],"image" => $arrayu['image'],"number" =>$num,
- "orgName" => $arrayu['orgName'],"orgEmail" =>$emailorg,"orgPhone" =>$arrayu['orgPhone'],"orgCity" =>$arrayu['orgCity'] ,"flag" => $flag);
+ $response[] = array("id" => $row['id'],"picD" => $arrayu['picD'],
+ "DonationMoney" => $row['DonationMoney'],"Name" =>$arrayu['Name'],
+ "descr" => $arrayu['descr'],"date" =>$arrayu['date'],"money" =>$arrayu['money'],"donation" =>$arrayu['donation']);
  $json = json_encode($response);//."".$response2
  
  }
