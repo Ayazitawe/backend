@@ -12,9 +12,12 @@ $org = $decodedData['org'];
 $sql = " SELECT flagConfirm FROM followers WHERE UserEmail = '$Email' and OrgEmail='$org'";
 $result = $conn->query($sql);
 
+if ($result->num_rows >0) {
+	
 $row = $result->fetch_assoc();
-$json = json_encode($row);
- 
+$json = json_encode($row);}
+else {$response="No";
+ $json = json_encode($response);}
  echo $json;
 $conn->close();
 ?>

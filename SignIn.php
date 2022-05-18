@@ -21,14 +21,22 @@ $email = $obj['email'];
 // Populate Password from JSON $obj array and store into $password.
 $password = $obj['password'];
 
+$phone=$obj['phone'];
+$city=$obj['city'];
+$pic='https://thumbs.dreamstime.com/b/illustration-building-icon-white-background-building-icon-white-background-107844010.jpg';
 //Checking email is already exist or not using SQL query.
-$CheckSQL = "SELECT * FROM user WHERE userEmail='$email'";
+$CheckSQL = "SELECT * FROM org WHERE orgEmail='$email'";
 
 // Executing SQL Query.
 $check = mysqli_fetch_array(mysqli_query($con,$CheckSQL));
 
+$CheckSQL1 = "SELECT * FROM user WHERE userEmail='$email'";
 
-if(isset($check)){
+// Executing SQL Query.
+$check1 = mysqli_fetch_array(mysqli_query($con,$CheckSQL1));
+
+
+if(isset($check1)){
 
  $emailExistMSG = '!المستخدم موجود فعليا';
 
@@ -39,10 +47,27 @@ $emailExistJson = json_encode($emailExistMSG,JSON_UNESCAPED_UNICODE);
  echo $emailExistJson ; 
 
  }
+ 
+ 
+
+
+else if(isset($check)){
+
+ $emailExistMSG = '!المستخدم موجود فعليا';
+
+ // Converting the message into JSON format.
+$emailExistJson = json_encode($emailExistMSG,JSON_UNESCAPED_UNICODE);
+ 
+// Echo the message.
+ echo $emailExistJson ; 
+
+ }
+ 
+ 
  else{
  
  // Creating SQL query and insert the record into MySQL database table.
-$Sql_Query = "insert into user (userName,userEmail,userPassword) values ('$name','$email','$password')";
+$Sql_Query = "insert into org (orgName,orgEmail,orgPassword,orgCity,orgPhone,image) values ('$name','$email','$password','$city','$phone','$pic')";
  
  
  if(mysqli_query($con,$Sql_Query)){

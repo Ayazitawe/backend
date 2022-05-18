@@ -7,7 +7,7 @@ $json = file_get_contents('php://input');
 $decodedData= json_decode($json,true);
 $Email = $decodedData['Email'];
 // Creating SQL command to fetch all records from Table.
-$sql = "SELECT OrgEmail FROM followers where UserEmail = '$Email'";
+$sql = "SELECT * FROM followers where UserEmail = '$Email'";
 
 $result = $conn->query($sql);
 

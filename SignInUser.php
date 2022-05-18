@@ -20,6 +20,7 @@ $email = $obj['email'];
  
 // Populate Password from JSON $obj array and store into $password.
 $password = $obj['password'];
+$otp = $obj['otp'];
 
 //Checking email is already exist or not using SQL query.
 $CheckSQL = "SELECT * FROM user WHERE userEmail='$email'";
@@ -28,7 +29,14 @@ $CheckSQL = "SELECT * FROM user WHERE userEmail='$email'";
 $check = mysqli_fetch_array(mysqli_query($con,$CheckSQL));
 
 
-if(isset($check)){
+$CheckSQL1 = "SELECT * FROM org WHERE orgEmail='$email'";
+
+// Executing SQL Query.
+$check1 = mysqli_fetch_array(mysqli_query($con,$CheckSQL1));
+
+
+
+if(isset($check1)){
 
  $emailExistMSG = '!المستخدم موجود فعليا';
 
@@ -39,10 +47,25 @@ $emailExistJson = json_encode($emailExistMSG,JSON_UNESCAPED_UNICODE);
  echo $emailExistJson ; 
 
  }
+
+
+
+ else if(isset($check)){
+
+ $emailExistMSG = '!المستخدم موجود فعليا';
+
+ // Converting the message into JSON format.
+$emailExistJson = json_encode($emailExistMSG,JSON_UNESCAPED_UNICODE);
+ 
+// Echo the message.
+ echo $emailExistJson ; 
+
+ }
+ 
  else{
  
  // Creating SQL query and insert the record into MySQL database table.
-$Sql_Query = "insert into user (userName,userEmail,userPassword,image) values ('$name','$email','$password','https://i.stack.imgur.com/l60Hf.png')";
+$Sql_Query = "insert into user (userName,userEmail,userPassword,OTP,image) values ('$name','$email','$password','$otp','https://i.stack.imgur.com/l60Hf.png')";
  
  
  if(mysqli_query($con,$Sql_Query)){

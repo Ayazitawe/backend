@@ -10,11 +10,19 @@ include('db.php');
   $UserEmail = $decodedData['Email'];
   $SQL = "SELECT * FROM user WHERE userEmail = '$UserEmail'";
     $exeSQL = mysqli_query($conn, $SQL);
-    $arrayu = mysqli_fetch_array($exeSQL);
-    $response[] = array("Message0" => $arrayu['userName'],"Message1" => $arrayu['userphone'],"Message2" => $arrayu['userPassword'],"Message3" => $arrayu['image'],
-"Message4" => $arrayu['city'],"Message5" => $arrayu['BD'],"Message6" => $arrayu['WorkPlace'],"Message7" => $arrayu['gender'],
-    );
 	
+//$result = $conn->query($sql);
+ $arrayu = mysqli_fetch_array($exeSQL);
+
+	if ($exeSQL->num_rows >0) {
+   
+    $response[] = array("Message0" => $arrayu['userName'],"Message1" => $arrayu['userphone'],"Message2" => $arrayu['userPassword'],"Message3" => $arrayu['image'],
+"Message4" => $arrayu['city'],"Message5" => $arrayu['BD'],"Message6" => $arrayu['WorkPlace'],"Message7" => $arrayu['gender'],"userEmail" => $arrayu['userEmail']
+    );}
+	else {
+	$response="No Results Found";
+ $json = json_encode($response);
+}
 echo json_encode($response);
   mysqli_close($conn);
 ?>
