@@ -46,7 +46,7 @@ $emailExistJson = json_encode($emailExistMSG,JSON_UNESCAPED_UNICODE);
  else{
  
  // Creating SQL query and insert the record into MySQL database table.
-$Sql_Query = "insert into org (orgName,orgEmail,orgPassword,orgCity,orgPhone,image) values ('$name','$email','$password','$city','$phone','$pic')";
+$Sql_Query = "insert into org (orgName,orgEmail,orgPassword,orgCity,orgPhone,image,OrgFollower,ChildNum) values ('$name','$email','$password','$city','$phone','$pic','0','0')";
  
  
  if(mysqli_query($con,$Sql_Query)){

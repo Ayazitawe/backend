@@ -22,9 +22,11 @@ while($row = $result->fetch_assoc()) {
 	$str = strtotime($row['dateEkfal']);
     $mm=date('d-m-Y', $str);
     $counter=0;
+	unset($arr);
 	 for ($x=0;$x<$row['ekfalTimes']; $x++){
 		$counter+=1;
 		unset($datearr);
+		
 		$datearr[]=explode("-",$mm);
 		$mm1=convert ($datearr[0][0])."-".convert ($datearr[0][1])."-".convert ($datearr[0][2]);
 		$arr[] = array("الرقم" => convert($counter),"تاريخ الدفع"=>$mm1,"المبلغ" =>convert($row['ChildMoney']));

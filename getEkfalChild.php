@@ -22,6 +22,8 @@ while($row = $result->fetch_assoc()) {
 	$str = strtotime($row['dateEkfal']);
     $mm=date('d-m-Y', $str);
     $counter=0;
+		unset($arr);
+
 	 for ($x=0;$x<$row['ekfalTimes']; $x++){
 		$counter+=1;
 		unset($datearr);

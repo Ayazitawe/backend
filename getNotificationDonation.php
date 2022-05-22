@@ -26,7 +26,7 @@ $exeSQL2 = mysqli_query($conn, $sql2);
  $arrayu2 = mysqli_fetch_array($exeSQL2);
  
  $response[] = array("id" => $row['id'],"OrgEmail" => $row['OrgEmail'],"UserEmail" => $row['UserEmail'],
- "Name" => $arrayu['Name'],"money" => $arrayu['money'],
+ "Name" => $arrayu['Name'],"money" => $row['DonationMoney'],
  "image" => $arrayu2['image'],"userName" => $arrayu2['userName']);
  $json = json_encode($response);//."".$response2
 

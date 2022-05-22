@@ -18,7 +18,7 @@ $check = mysqli_fetch_array(mysqli_query($conn,$CheckSQL));
 
 
 if(isset($check)){
-$Sql_Query = "update donation set DonationMoney=DonationMoney+'$money' where id='$id' and UserEmail='$Email'";
+$Sql_Query = "update donation set DonationMoney=DonationMoney+'$money',flagNotification='true' where id='$id' and UserEmail='$Email'";
 $result = $conn->query($Sql_Query);
 $Sql_Query = "update donate set donation=donation+'$money' where id='$id'";
 $result = $conn->query($Sql_Query);
@@ -32,9 +32,10 @@ $json = json_encode($MSG,JSON_UNESCAPED_UNICODE);
 }
  }
  else {
-$sql = "insert into donation (UserEmail,OrgEmail,id,DonationMoney,date) values ('$Email','$org','$id','$money',now())";
+$sql = "insert into donation (UserEmail,OrgEmail,id,DonationMoney,date,flagNotification) values ('$Email','$org','$id','$money',now(),'true')";
 $result = $conn->query($sql);
-
+$Sql_Query = "update donate set donation=donation+'$money' where id='$id'";
+$result = $conn->query($Sql_Query);
 if ($result) {
 $MSG = 'add donation' ;
 $json = json_encode($MSG,JSON_UNESCAPED_UNICODE);

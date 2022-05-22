@@ -18,8 +18,7 @@ if ($result->num_rows >0) {
 $response1[] = array("id" => $row['id'],"date" => $row['date'],"image" => $arrayu['image'],
 "userName" => $arrayu['userName'],"text" => "طلب الإشتراك في جمعيتك",
  "userEmail" =>$emailuser,"flagConfirm" => $row['flagConfirm']);
-$response="No Results Found";
- $json = json_encode($response);//."".$response2
+ $json = json_encode($response1);//."".$response2
  
  }
  

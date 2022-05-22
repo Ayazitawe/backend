@@ -20,7 +20,7 @@ $email = $obj['email'];
  
 // Populate Password from JSON $obj array and store into $password.
 $password = $obj['password'];
-$otp = $obj['otp'];
+//$otp = $obj['otp'];
 
 //Checking email is already exist or not using SQL query.
 $CheckSQL = "SELECT * FROM user WHERE userEmail='$email'";
@@ -65,7 +65,7 @@ $emailExistJson = json_encode($emailExistMSG,JSON_UNESCAPED_UNICODE);
  else{
  
  // Creating SQL query and insert the record into MySQL database table.
-$Sql_Query = "insert into user (userName,userEmail,userPassword,OTP,image) values ('$name','$email','$password','$otp','https://i.stack.imgur.com/l60Hf.png')";
+$Sql_Query = "insert into user (userName,userEmail,userPassword,OTP,image) values ('$name','$email','$password','123','https://i.stack.imgur.com/l60Hf.png')";
  
  
  if(mysqli_query($con,$Sql_Query)){
